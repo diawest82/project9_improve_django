@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import Http404, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.core.exceptions import ObjectDoesNotExist
-import pytz
+
 from .models import *
 from .forms import *
 

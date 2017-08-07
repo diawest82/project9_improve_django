@@ -1,10 +1,8 @@
 from django.test import TestCase
 from django.core.urlresolvers import reverse
-from django.conf import settings
 from django.contrib.auth.models import User
 
 from .models import Menu, Item, Ingredient
-from .forms import MenuForm
 
 menu_data1 = {
     "season": 'Summer Menu',
@@ -15,6 +13,7 @@ menu_data2 = {
     "season": "Fall Menu",
     "expiration_date": "2017-11-21"
 }
+
 
 class TestInfo(TestCase):
     def setUp(self):
@@ -41,9 +40,8 @@ class TestInfo(TestCase):
         self.menu1.items.add(self.items)
         self.menu2.items.add(self.items)
 
+
 class MenuViewsTest(TestInfo):
-
-
     def test_list_all_current_menu_view(self):
         resp = self.client.get(reverse("menu:menu_list"))
         self.assertEqual(resp.status_code, 200)
@@ -93,6 +91,3 @@ class MenuModelTest(TestCase):
     def test_create_menu(self):
         menu = Menu.objects.create(**menu_data2)
         self.assertEqual(menu.season, 'Fall Menu')
-
-
-
